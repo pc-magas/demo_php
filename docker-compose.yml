@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+
+  nginx:
+   image: nginx:alpine
+   ports:
+     - '8082:80'
+   volumes:
+     - './conf/nginx.conf:/etc/nginx/nginx.conf:ro'
+     - './logs/:/var/log/nginx'
+   links:
+     - 'moodle'
+   volumes_from:
+     - 'moodle'
+
+  moodle_db:
+    image: mysql:5.7
+    volumes:
+      - 'dbdata:/var/lib/mysql'
+      - ''
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      MYSQL_ONETIME_PASSWORD: 'yes'
+      MYSQL_DATABASE: test
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mypass
+
+  php:
+    image: myphp:latest
+    volumes:
+      - 'www:/var/www/html'
+      - ''
+    links:
+      - 'moodle_db'
+    environment:
+      DB_HOST:
+
+volumes:
+  dbdata:
+  www:
