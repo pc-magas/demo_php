@@ -13,6 +13,7 @@ ENV DB_HOST=""\
 
 
 RUN apt-get update && \
+    apt-get install -y nc &&\
     docker-php-ext-install pdo mysqli pdo_mysql &&\
     mkdir /usr/src/app &&\
     apt-get autopurge -y &&\
