@@ -1,5 +1,5 @@
 CREATE TABLE mytable (
-    id int PRIMARY KEY AUTO INCREMENT,
+    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     value int
 );
 

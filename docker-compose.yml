@@ -15,7 +15,7 @@ services:
    depends_on:
       - php
 
-  moodle_db:
+  db:
     image: mysql:5.7
     volumes:
       - 'dbdata:/var/lib/mysql'
@@ -32,9 +32,14 @@ services:
     volumes:
       - 'www:/var/www/html'
     links:
-      - 'moodle_db'
+      - 'db'
     depends_on:
-      - moodle_db
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: mysql
+      DB_PASSWD: mypass
+
 
 volumes:
   dbdata:

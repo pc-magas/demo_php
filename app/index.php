@@ -1,10 +1,10 @@
 <?php
 
-$db_host = env("DB_HOST");
-$db_name = env("DB_NAME");
-$db_password = env("DB_PASSWD");
-$db_usr = env("DB_USR");
-$db_port = env("DB_PORT");
+$db_host = getenv("DB_HOST");
+$db_name = getenv("DB_NAME");
+$db_password = getenv("DB_PASSWD");
+$db_usr = getenv("DB_USR");
+$db_port = getenv("DB_PORT");
 
 $dsn="mysql:dbname=$db_name;host=$db_host:$db_port";
 

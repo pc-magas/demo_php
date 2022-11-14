@@ -8,12 +8,12 @@ ARG INIT_DB_NAME="mitsos_db"
 
 ENV DB_HOST=""\
     DB_USER=$INIT_DB_USER\
-    DB_PASSWD=$INIT_DB_NAME\
-    DB_PORT=3306
-
+    DB_PASSWD=""\
+    DB_PORT=3306\
+    DB_NAME=$INIT_DB_NAME
 
 RUN apt-get update && \
-    apt-get install -y nc &&\
+    apt-get install -y netcat &&\
     docker-php-ext-install pdo mysqli pdo_mysql &&\
     mkdir /usr/src/app &&\
     apt-get autopurge -y &&\
